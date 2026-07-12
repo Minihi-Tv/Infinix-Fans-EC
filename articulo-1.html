@@ -1,179 +1,657 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reseña: Infinix NOTE 40 Pro+ 5G - Tech Infinix</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reseña: Infinix NOTE 40 Pro+ 5G — Tech Infinix</title>
 
-  <!-- Fuentes de Google y FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-  <style>
-    /* === VARIABLES Y ESTILOS BASE (Igual que en tu index) === */
-    :root {
-        --infinix-green: #00d95f;
-        --bg-black: #050505;
-        --bg-dark-1: #111111;
-        --bg-dark-2: #1a1a1a;
-        --text-main: #ffffff;
-        --text-muted: #a0a0a0;
-        --transition-fast: 0.3s ease;
-    }
+<style>
+/* ============================================================
+   TECH INFINIX — mismos tokens que el index para que el sitio
+   se sienta como un solo producto, no como páginas sueltas.
+   ============================================================ */
+:root{
+  --bg-black:#050505; --bg-1:#0c0d0d; --bg-2:#141515; --bg-3:#1c1f1e;
+  --green:#00d95f; --green-deep:#00a84c; --green-glow:rgba(0,217,95,.35);
+  --amber:#ff8a3d; --amber-glow:rgba(255,138,61,.3);
+  --text-main:#f5f7f6; --text-muted:#8d9b95; --line:rgba(255,255,255,.07);
+  --radius:16px; --ease:cubic-bezier(.22,.9,.32,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html{scroll-behavior:smooth; overflow-x:hidden; width:100%;}
+body{background:var(--bg-black); color:var(--text-main); line-height:1.6; overflow-x:hidden; width:100%;}
+img,svg,video{max-width:100%; height:auto;}
+a{text-decoration:none; color:var(--green); transition:.25s ease;}
+.mono{font-family:'JetBrains Mono',monospace;}
+::selection{background:var(--green); color:#000;}
+a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--green); outline-offset:3px;}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background-color: var(--bg-black); color: var(--text-main); line-height: 1.6; }
-    a { text-decoration: none; color: var(--infinix-green); transition: var(--transition-fast); }
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,217,95,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,217,95,.05) 1px, transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(ellipse 80% 40% at 50% 0%, #000 0%, transparent 70%);
+  opacity:.5;
+}
 
-    /* === HEADER === */
-    #header-nav {
-        position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex;
-        justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.8);
-        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 1000;
-    }
-    .logo-brand { font-size: 26px; font-weight: 900; color: var(--text-main); text-transform: uppercase; }
-    .logo-brand span { color: var(--infinix-green); }
-    #header-nav ul { display: flex; gap: 30px; list-style: none; }
-    #header-nav ul li a { color: var(--text-main); font-weight: 600; font-size: 14px; text-transform: uppercase; }
-    #header-nav ul li a:hover { color: var(--infinix-green); }
+/* ---------- BARRA DE PROGRESO DE LECTURA ---------- */
+#reading-progress{
+  position:fixed; top:0; left:0; height:3px; width:0%; background:var(--green);
+  box-shadow:0 0 10px var(--green-glow); z-index:1400; transition:width .1s linear;
+}
 
-    /* === CONTENEDOR DEL ARTÍCULO (ESTILOS UI PREMIUM) === */
-    .main-container { padding: 100px 5% 60px; max-width: 1400px; margin: auto; }
-    
-    .single-post-container {
-        background: var(--bg-dark-1);
-        padding: 50px;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.03);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        max-width: 900px;
-        margin: auto;
-    }
+/* ---------- HEADER (idéntico al index) ---------- */
+#header-nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center;
+  justify-content:space-between; padding:14px 5%; background:rgba(5,5,5,.72);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--line);
+}
+.logo-brand{font-size:24px; font-weight:900; color:var(--text-main); text-transform:uppercase; display:flex; align-items:center; gap:8px;}
+.logo-brand .dot{width:9px; height:9px; border-radius:2px; background:var(--green); box-shadow:0 0 12px var(--green-glow); transform:rotate(45deg);}
+.logo-brand span{color:var(--green);}
+.nav-desktop{display:flex; align-items:center; gap:34px;}
+.nav-desktop ul{display:flex; gap:30px; list-style:none;}
+.nav-desktop ul li a{color:var(--text-main); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.6px;}
+.nav-desktop ul li a:hover{color:var(--green);}
+.burger{display:none; width:42px; height:42px; border-radius:10px; background:var(--bg-2); border:1px solid var(--line); color:var(--text-main); font-size:18px; align-items:center; justify-content:center; cursor:pointer; z-index:1300;}
+.mobile-panel{position:fixed; top:0; right:-100%; height:100vh; width:min(300px,86vw); background:var(--bg-1); border-left:1px solid var(--line); z-index:1250; padding:100px 30px 30px; transition:right .35s var(--ease); display:flex; flex-direction:column; gap:22px;}
+.mobile-panel.open{right:0;}
+.mobile-panel ul{list-style:none; display:flex; flex-direction:column; gap:20px;}
+.mobile-panel ul li a{font-size:18px; font-weight:700; color:var(--text-main); text-transform:uppercase;}
+.panel-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:blur(3px); z-index:1200; opacity:0; pointer-events:none; transition:opacity .3s ease;}
+.panel-backdrop.open{opacity:1; pointer-events:auto;}
 
-    .single-post-title { font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 20px; color: var(--text-main); }
-    
-    .single-post-meta {
-        display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
-        color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px;
-        padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .meta-item { display: flex; align-items: center; gap: 8px; }
-    .meta-item i { color: var(--infinix-green); }
-    .post-label-badge { background: rgba(0, 217, 95, 0.15); color: var(--infinix-green); padding: 4px 12px; border-radius: 20px; font-weight: 600; text-transform: uppercase; font-size: 0.8rem;}
+@media (max-width:1024px){
+  .nav-desktop{display:none;}
+  .burger{display:flex;}
+}
 
-    /* ESTILOS DE LECTURA (Títulos, fotos, citas) */
-    .post-body { font-size: 1.15rem; line-height: 1.8; color: #cccccc; font-weight: 300; }
-    .post-body p { margin-bottom: 20px; }
-    
-    .post-body h2 {
-        color: var(--text-main); font-weight: 800; margin: 40px 0 20px;
-        position: relative; padding-left: 15px; line-height: 1.3;
-    }
-    .post-body h2::before {
-        content: ''; position: absolute; left: 0; top: 10%; width: 4px; height: 80%;
-        background: var(--infinix-green); border-radius: 5px;
-    }
+/* ---------- TICKER / ANUNCIOS ---------- */
+.ticker-bar{margin-top:60px; background:var(--bg-1); border-bottom:1px solid var(--line); display:flex; align-items:center; overflow:hidden; white-space:nowrap; position:relative; z-index:2;}
+.ticker-tag{flex:none; background:var(--green); color:#000; font-weight:800; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:9px 18px; z-index:2;}
+.ticker-track{display:flex; gap:60px; padding:9px 0; animation:scrollTicker 28s linear infinite;}
+.ticker-track span{font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:10px;}
+.ticker-track span i{color:var(--green);}
+@keyframes scrollTicker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-    .post-body img { width: 100%; border-radius: 15px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-    
-    .post-body a { color: var(--infinix-green); font-weight: 500; border-bottom: 1px dashed var(--infinix-green); }
-    .post-body a:hover { border-bottom-style: solid; }
+/* ---------- BREADCRUMB ---------- */
+.breadcrumb{max-width:1200px; margin:0 auto; padding:26px 5% 0; position:relative; z-index:2; font-size:13px; color:var(--text-muted); display:flex; gap:8px; flex-wrap:wrap;}
+.breadcrumb a{color:var(--text-muted); font-weight:600;}
+.breadcrumb a:hover{color:var(--green);}
+.breadcrumb span.sep{opacity:.5;}
+.breadcrumb span.current{color:var(--text-main);}
 
-    .post-body blockquote {
-        background: rgba(0, 217, 95, 0.05); border-left: 4px solid var(--infinix-green);
-        padding: 25px 30px; margin: 40px 0; font-style: italic; border-radius: 0 15px 15px 0;
-        color: var(--text-main); font-size: 1.25rem;
-    }
+/* ---------- LAYOUT: ARTÍCULO + SIDEBAR ---------- */
+.article-layout{
+  position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:24px 5% 60px;
+  display:grid; grid-template-columns:1fr 320px; gap:36px; align-items:start;
+}
+@media (max-width:980px){
+  .article-layout{grid-template-columns:1fr;}
+}
 
-    /* BOTONES SOCIALES */
-    .post-footer-actions {
-        margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);
-        display: flex; justify-content: space-between; align-items: center;
-    }
-    .share-buttons a {
-        display: inline-flex; justify-content: center; align-items: center; width: 45px; height: 45px;
-        border-radius: 50%; background: var(--bg-dark-2); color: var(--text-main); margin-left: 10px; font-size: 1.2rem;
-    }
-    .share-buttons a:hover { background: var(--infinix-green); color: var(--bg-black); transform: translateY(-5px); }
+.single-post-container{background:var(--bg-1); padding:46px; border-radius:20px; border:1px solid var(--line); box-shadow:0 20px 50px rgba(0,0,0,.5);}
+@media (max-width:640px){.single-post-container{padding:26px;}}
 
-    /* FOOTER */
-    footer { text-align: center; padding: 40px; background: #000; border-top: 1px solid #222; margin-top: 80px;}
+.post-label-badge{background:rgba(0,217,95,.15); color:var(--green); padding:5px 14px; border-radius:20px; font-weight:700; text-transform:uppercase; font-size:.72rem; letter-spacing:.4px;}
+.single-post-title{font-size:clamp(1.8rem,3.6vw,2.7rem); font-weight:900; line-height:1.2; margin:18px 0 20px;}
 
-    @media (max-width: 768px) {
-        #header-nav ul { display: none; }
-        .single-post-container { padding: 25px; }
-        .single-post-title { font-size: 2rem; }
-        .post-footer-actions { flex-direction: column; gap: 20px; align-items: flex-start; }
-    }
-  </style>
+.single-post-meta{display:flex; flex-wrap:wrap; align-items:center; gap:18px; color:var(--text-muted); font-size:.9rem; margin-bottom:34px; padding-bottom:22px; border-bottom:1px solid var(--line);}
+.meta-item{display:flex; align-items:center; gap:8px;}
+.meta-item i{color:var(--green);}
+
+/* ---------- CUERPO DEL ARTÍCULO ---------- */
+.post-body{font-size:1.1rem; line-height:1.85; color:#d4d8d6; font-weight:300;}
+.post-body p{margin-bottom:20px;}
+.post-body h2{color:var(--text-main); font-weight:800; font-size:1.5rem; margin:44px 0 20px; position:relative; padding-left:16px; line-height:1.3; scroll-margin-top:100px;}
+.post-body h2::before{content:''; position:absolute; left:0; top:8%; width:4px; height:84%; background:var(--green); border-radius:5px;}
+.post-body img{width:100%; border-radius:15px; margin:28px 0; box-shadow:0 10px 30px rgba(0,0,0,.6);}
+.post-body a{color:var(--green); font-weight:500; border-bottom:1px dashed var(--green);}
+.post-body a:hover{border-bottom-style:solid;}
+.post-body strong{color:var(--text-main); font-weight:600;}
+.post-body blockquote{background:rgba(0,217,95,.05); border-left:4px solid var(--green); padding:24px 28px; margin:36px 0; font-style:italic; border-radius:0 15px 15px 0; color:var(--text-main); font-size:1.15rem;}
+
+/* ---------- GANCHO CTA EMBEBIDO EN EL ARTÍCULO ---------- */
+.inline-cta{
+  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  background:linear-gradient(120deg,#0d1a12 0%, var(--bg-2) 70%); border:1px solid var(--green-glow);
+  border-radius:14px; padding:24px 28px; margin:36px 0;
+}
+.inline-cta .cta-text b{display:block; font-size:1.05rem; color:var(--text-main); margin-bottom:4px;}
+.inline-cta .cta-text span{color:var(--text-muted); font-size:.88rem;}
+.btn-primary{
+  padding:13px 26px; background:var(--green); color:#000; font-weight:800; border-radius:50px;
+  text-transform:uppercase; font-size:12.5px; letter-spacing:.4px; border:none; cursor:pointer;
+  display:inline-flex; align-items:center; gap:8px; white-space:nowrap; transition:all .25s var(--ease);
+}
+.btn-primary:hover{background:#00ff73; box-shadow:0 8px 24px var(--green-glow); transform:translateY(-2px);}
+.btn-ghost{
+  padding:13px 24px; border:1px solid var(--line); border-radius:50px; color:var(--text-main); font-weight:700;
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.4px; background:none; cursor:pointer;
+}
+.btn-ghost:hover{border-color:var(--green); color:var(--green);}
+
+/* ---------- REACCIONES ---------- */
+.reactions-box{margin-top:44px; padding-top:32px; border-top:1px solid var(--line);}
+.reactions-box h4{font-size:1rem; font-weight:700; margin-bottom:16px; text-transform:uppercase; letter-spacing:.4px; color:var(--text-muted);}
+.reactions-row{display:flex; gap:12px; flex-wrap:wrap;}
+.reaction-btn{
+  display:flex; align-items:center; gap:9px; background:var(--bg-2); border:1px solid var(--line);
+  border-radius:30px; padding:10px 18px; cursor:pointer; color:var(--text-main); font-weight:600; font-size:.9rem;
+  transition:all .2s var(--ease);
+}
+.reaction-btn .emoji{font-size:1.15rem;}
+.reaction-btn .count{font-family:'JetBrains Mono',monospace; color:var(--text-muted); font-size:.82rem;}
+.reaction-btn:hover{border-color:var(--green-glow); transform:translateY(-2px);}
+.reaction-btn.active{background:rgba(0,217,95,.12); border-color:var(--green);}
+.reaction-btn.active .count{color:var(--green);}
+
+/* ---------- COMPARTIR + VOLVER ---------- */
+.post-footer-actions{margin-top:36px; padding-top:28px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+.back-link{color:var(--text-muted); font-weight:600; display:inline-flex; align-items:center; gap:8px;}
+.back-link:hover{color:var(--green);}
+.share-buttons{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.share-buttons span.label{font-weight:600; font-size:.88rem; color:var(--text-muted); margin-right:2px;}
+.share-buttons button, .share-buttons a{
+  display:inline-flex; justify-content:center; align-items:center; width:42px; height:42px; border-radius:50%;
+  background:var(--bg-2); color:var(--text-main); font-size:1.05rem; border:1px solid var(--line); cursor:pointer;
+  transition:all .2s var(--ease);
+}
+.share-buttons button:hover, .share-buttons a:hover{background:var(--green); color:#000; border-color:var(--green); transform:translateY(-4px);}
+.copy-toast{
+  position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--green); color:#000;
+  padding:12px 22px; border-radius:30px; font-weight:700; font-size:.88rem; opacity:0; pointer-events:none;
+  transition:all .3s var(--ease); z-index:1400;
+}
+.copy-toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{display:flex; flex-direction:column; gap:22px; position:sticky; top:90px;}
+@media (max-width:980px){.sidebar{position:static;}}
+.side-card{background:var(--bg-1); border:1px solid var(--line); border-radius:16px; padding:24px;}
+.side-card h4{font-size:.82rem; text-transform:uppercase; letter-spacing:.6px; color:var(--text-muted); margin-bottom:16px; display:flex; align-items:center; gap:8px;}
+.side-card h4 i{color:var(--green);}
+
+/* ficha técnica flotante — mismo lenguaje visual que los chips del hero del index */
+.spec-list{display:flex; flex-direction:column; gap:0;}
+.spec-row{display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px dashed var(--line); font-size:.86rem;}
+.spec-row:last-child{border-bottom:none;}
+.spec-row span{color:var(--text-muted);}
+.spec-row b{font-family:'JetBrains Mono',monospace; color:var(--green); font-weight:700;}
+
+/* tabla de contenidos autogenerada */
+.toc-list{list-style:none; display:flex; flex-direction:column; gap:10px;}
+.toc-list a{color:var(--text-muted); font-size:.88rem; display:flex; align-items:center; gap:8px; transition:.2s ease;}
+.toc-list a::before{content:''; width:6px; height:6px; border-radius:2px; background:var(--line); transform:rotate(45deg); flex:none;}
+.toc-list a:hover, .toc-list a.active{color:var(--green);}
+.toc-list a.active::before{background:var(--green); box-shadow:0 0 8px var(--green-glow);}
+
+/* ad slot lateral */
+.ad-slot-side{border-radius:16px; overflow:hidden; border:1px solid var(--green-glow); position:relative;}
+.ad-slot-side img{width:100%; height:180px; object-fit:cover;}
+.ad-slot-side .ad-slot-tag{position:absolute; top:10px; left:10px; background:var(--amber); color:#1a0e05; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; padding:4px 10px; border-radius:16px;}
+.ad-slot-side .ad-slot-copy{padding:16px; background:var(--bg-1);}
+.ad-slot-side .ad-slot-copy p{font-size:.85rem; color:var(--text-muted); margin-bottom:12px;}
+
+/* newsletter CTA */
+.newsletter-card{background:linear-gradient(150deg,#0d1a12,var(--bg-1)); border:1px solid var(--green-glow);}
+.newsletter-card p{color:var(--text-muted); font-size:.86rem; margin-bottom:14px;}
+.newsletter-form{display:flex; flex-direction:column; gap:10px;}
+.newsletter-form input{
+  background:var(--bg-2); border:1px solid var(--line); border-radius:10px; padding:11px 14px;
+  color:var(--text-main); font-size:.86rem; outline:none;
+}
+.newsletter-form input:focus{border-color:var(--green);}
+.newsletter-form button{width:100%; justify-content:center;}
+.newsletter-note{font-size:.72rem; color:var(--text-muted); opacity:.8; margin-top:8px;}
+
+/* ---------- BOTÓN VOLVER ARRIBA ---------- */
+#back-to-top{
+  position:fixed; bottom:26px; right:26px; width:48px; height:48px; border-radius:50%;
+  background:var(--green); color:#000; border:none; font-size:1.1rem; cursor:pointer; z-index:900;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px var(--green-glow);
+  opacity:0; pointer-events:none; transform:translateY(12px); transition:all .3s var(--ease);
+}
+#back-to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+
+/* ---------- BARRA FLOTANTE DE COMPARTIR (MÓVIL) ---------- */
+.mobile-share-bar{
+  display:none; position:fixed; bottom:0; left:0; right:0; z-index:950; background:rgba(12,13,13,.92);
+  backdrop-filter:blur(12px); border-top:1px solid var(--line); padding:12px 5%;
+  justify-content:space-around; align-items:center;
+}
+.mobile-share-bar button{background:none; border:none; color:var(--text-main); font-size:1.15rem; display:flex; flex-direction:column; align-items:center; gap:4px;}
+.mobile-share-bar button span{font-size:9px; text-transform:uppercase; color:var(--text-muted); letter-spacing:.4px;}
+@media (max-width:980px){
+  .mobile-share-bar{display:flex;}
+  body{padding-bottom:70px;}
+}
+
+/* ---------- ANUNCIO GRANDE ---------- */
+.ad-banner{
+  position:relative; z-index:2; margin:56px 0; border-radius:20px; overflow:hidden; display:grid;
+  grid-template-columns:1fr 1fr; align-items:center; background:linear-gradient(120deg,#0d1a12 0%,var(--bg-1) 60%);
+  border:1px solid var(--green-glow);
+}
+.ad-banner .ad-copy{padding:34px;}
+.ad-banner .ad-tag{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--amber); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; display:inline-block; border:1px solid var(--amber-glow); padding:4px 12px; border-radius:20px;}
+.ad-banner h3{font-size:1.6rem; font-weight:800; margin-bottom:10px; text-transform:uppercase;}
+.ad-banner h3 span{color:var(--green);}
+.ad-banner p{color:var(--text-muted); margin-bottom:18px; max-width:380px; font-size:.92rem;}
+.ad-banner .ad-img{height:100%; min-height:220px;}
+.ad-banner .ad-img img{width:100%; height:100%; object-fit:cover;}
+@media (max-width:700px){.ad-banner{grid-template-columns:1fr;} .ad-banner .ad-img{min-height:180px; order:-1;}}
+
+/* ---------- RECOMENDADOS (desde posts.json) ---------- */
+.related-section{position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:0 5% 80px;}
+.section-head-sm{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:26px; flex-wrap:wrap;}
+.section-head-sm h3{font-size:clamp(1.4rem,2.4vw,1.9rem); font-weight:800; text-transform:uppercase;}
+.section-head-sm h3 span{color:var(--green);}
+.section-head-sm p{color:var(--text-muted); font-size:.88rem;}
+.related-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px;}
+.related-card{background:var(--bg-1); border:1px solid var(--line); border-radius:14px; overflow:hidden; transition:all .3s var(--ease); opacity:0; transform:translateY(20px);}
+.related-card.visible{animation:cardIn .55s var(--ease) forwards;}
+@keyframes cardIn{to{opacity:1; transform:translateY(0);}}
+.related-card:hover{transform:translateY(-6px); border-color:var(--green-glow); box-shadow:0 14px 34px rgba(0,0,0,.55);}
+.related-media{position:relative; height:150px; overflow:hidden;}
+.related-media img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
+.related-card:hover .related-media img{transform:scale(1.06);}
+.related-badge{position:absolute; top:10px; left:10px; background:var(--green); color:#000; font-size:.62rem; font-weight:800; text-transform:uppercase; padding:4px 10px; border-radius:16px;}
+.related-content{padding:16px 18px;}
+.related-content h4{font-size:.95rem; font-weight:700; margin-bottom:8px; line-height:1.3;}
+.related-content h4 a{color:var(--text-main);}
+.related-content h4 a:hover{color:var(--green);}
+.related-content p{font-size:.82rem; color:var(--text-muted); margin-bottom:10px;}
+.related-content .read-more-link{font-size:.78rem; font-weight:700; text-transform:uppercase; color:var(--green); display:inline-flex; align-items:center; gap:6px;}
+
+/* ---------- FOOTER ---------- */
+footer{position:relative; z-index:2; background:var(--bg-1); border-top:1px solid var(--line); padding:50px 5% 30px; margin-top:20px; text-align:center; color:var(--text-muted); font-size:.85rem;}
+</style>
 </head>
 <body>
 
-  <!-- HEADER (El link 'Inicio' te devuelve al index.html) -->
-  <header id="header-nav">
-    <a href="index.html" class="logo-brand">TECH<span>INFINIX</span></a>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="index.html">Nuevos</a></li>
-        <li><a href="index.html">Promociones</a></li>
-      </ul>
-    </nav>
-  </header>
+<div id="reading-progress"></div>
 
-  <div class="main-container">
-    <article class="single-post-container">
-      
-      <!-- TÍTULO DEL POST -->
-      <h1 class="single-post-title">Reseña: El Nuevo Infinix NOTE 40 Pro+ 5G</h1>
-      
-      <!-- METADATOS (Autor, fecha, categoría) -->
-      <div class="single-post-meta">
-        <span class="meta-item"><i class="fa-solid fa-user"></i> Equipo Infinix</span>
-        <span class="meta-item"><i class="fa-regular fa-calendar"></i> 14 Mayo, 2024</span>
-        <span class="meta-item"><i class="fa-solid fa-tags"></i> <span class="post-label-badge">Nuevos Lanzamientos</span></span>
-      </div>
+<!-- HEADER -->
+<header id="header-nav">
+  <a href="index.html" class="logo-brand"><span class="dot"></span>TECH<span>INFINIX</span></a>
+  <nav class="nav-desktop">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="index.html#main-content">Lanzamientos</a></li>
+      <li><a href="index.html#gadgets">Gadgets</a></li>
+      <li><a href="index.html#main-content">Promociones</a></li>
+    </ul>
+  </nav>
+  <button class="burger" id="burgerBtn" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+</header>
 
-      <!-- CONTENIDO DEL ARTÍCULO (AQUÍ ESCRIBES TU POST) -->
-      <div class="post-body">
-        
-        <p>El mundo de los smartphones acaba de recibir una sacudida masiva. Infinix ha presentado oficialmente su nueva bestia para la gama media-alta, y viene dispuesta a romper todas las reglas del juego enfocado en el gaming y la creación de contenido. Hoy analizamos a fondo todo lo que este dispositivo tiene para ofrecer.</p>
+<div class="panel-backdrop" id="panelBackdrop"></div>
+<aside class="mobile-panel" id="mobilePanel">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#main-content">Lanzamientos</a></li>
+    <li><a href="index.html#gadgets">Gadgets</a></li>
+    <li><a href="index.html#main-content">Promociones</a></li>
+  </ul>
+</aside>
 
-        <!-- IMAGEN PRINCIPAL -->
-        <img src="https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=1200&auto=format&fit=crop" alt="Nuevo Celular Infinix" />
+<!-- TICKER -->
+<div class="ticker-bar">
+  <span class="ticker-tag">Anuncios</span>
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
 
-        <!-- SUBTÍTULO CON BARRA NEÓN -->
-        <h2>Diseño y Pantalla: Curvas que enamoran</h2>
-        <p>Lo primero que notas al sacar el equipo de su caja es su increíble <strong>pantalla AMOLED curva 3D de 6.78 pulgadas</strong>. Con una tasa de refresco ultra fluida de 120Hz, navegar por el sistema operativo XOS se siente más rápido que nunca. Además, los biseles son prácticamente invisibles.</p>
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Inicio</a>
+  <span class="sep">/</span>
+  <a href="index.html#main-content">Nuevos Lanzamientos</a>
+  <span class="sep">/</span>
+  <span class="current">Reseña NOTE 40 Pro+ 5G</span>
+</nav>
 
-        <!-- CITA RESALTADA (BLOCKQUOTE) -->
-        <blockquote>"Infinix ha logrado lo impensable: traer un diseño y sensaciones de la gama ultra premium a un dispositivo accesible para todos los gamers." - Revista TechGlobal</blockquote>
+<div class="article-layout">
 
-        <h2>Potencia y Carga Relámpago 2.0</h2>
-        <p>En el interior, encontramos el potente procesador MediaTek Dimensity optimizado para el gaming de alto rendimiento. Pero la verdadera magia ocurre cuando conectas el dispositivo. Gracias a la tecnología de <a href="#">All-Round FastCharge 2.0</a>, puedes cargar el teléfono del 0% al 50% en tan solo 8 minutos.</p>
+  <!-- ARTÍCULO -->
+  <article class="single-post-container" id="post-body-wrapper">
 
-      </div>
-      <!-- FIN DEL CONTENIDO -->
+    <span class="post-label-badge"><i class="fa-solid fa-tags"></i> Nuevos Lanzamientos</span>
+    <h1 class="single-post-title">Reseña: El Nuevo Infinix NOTE 40 Pro+ 5G</h1>
 
-      <!-- BOTONES DE COMPARTIR -->
-      <div class="post-footer-actions">
-        <a href="index.html" style="color: var(--text-muted);"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
-        <div class="share-buttons">
-          <span style="font-weight: 600; margin-right: 10px;">Compartir:</span>
-          <!-- Nota: En un proyecto real, se usa Javascript para obtener la URL actual. Aquí hay botones visuales -->
-          <a href="#" title="Compartir en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" title="Compartir en X"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#" title="Compartir en WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <div class="single-post-meta">
+      <span class="meta-item"><i class="fa-solid fa-user"></i> Equipo Infinix</span>
+      <span class="meta-item"><i class="fa-regular fa-calendar"></i> 14 Mayo, 2026</span>
+      <span class="meta-item" id="reading-time"><i class="fa-regular fa-clock"></i> — min de lectura</span>
+      <span class="meta-item"><i class="fa-solid fa-eye"></i> <span id="view-count">—</span> lecturas</span>
+    </div>
+
+    <div class="post-body" id="post-body">
+
+      <p>El mundo de los smartphones acaba de recibir una sacudida masiva. Infinix ha presentado oficialmente su nueva bestia para la gama media-alta, y viene dispuesta a romper todas las reglas del juego enfocado en el gaming y la creación de contenido. Hoy analizamos a fondo todo lo que este dispositivo tiene para ofrecer.</p>
+
+      <img src="https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=1200&auto=format&fit=crop" alt="Nuevo Celular Infinix">
+
+      <h2 id="sec-diseno">Diseño y Pantalla: Curvas que enamoran</h2>
+      <p>Lo primero que notas al sacar el equipo de su caja es su increíble <strong>pantalla AMOLED curva 3D de 6.78 pulgadas</strong>. Con una tasa de refresco ultra fluida de 120Hz, navegar por el sistema operativo XOS se siente más rápido que nunca. Además, los biseles son prácticamente invisibles.</p>
+
+      <blockquote>"Infinix ha logrado lo impensable: traer un diseño y sensaciones de la gama ultra premium a un dispositivo accesible para todos los gamers." — Revista TechGlobal</blockquote>
+
+      <div class="inline-cta">
+        <div class="cta-text">
+          <b>¿Ya decidiste el tuyo?</b>
+          <span>Revisa las tiendas con el mejor precio disponible ahora mismo.</span>
         </div>
+        <a class="btn-primary" href="index.html#gadgets"><i class="fa-solid fa-tag"></i> Ver mejor precio</a>
       </div>
 
-    </article>
-  </div>
+      <h2 id="sec-potencia">Potencia y Carga Relámpago 2.0</h2>
+      <p>En el interior, encontramos el potente procesador MediaTek Dimensity optimizado para el gaming de alto rendimiento. Pero la verdadera magia ocurre cuando conectas el dispositivo. Gracias a la tecnología de <a href="#">All-Round FastCharge 2.0</a>, puedes cargar el teléfono del 0% al 50% en tan solo 8 minutos.</p>
 
-  <footer>
-    <p>&#169; 2024 Tech Infinix Theme. Hospedado en GitHub Pages.</p>
-  </footer>
+      <h2 id="sec-veredicto">Veredicto final</h2>
+      <p>Entre su diseño premium, su pantalla curva y su carga relámpago, el NOTE 40 Pro+ 5G se posiciona como una de las mejores opciones de gama media-alta del año. Si buscas rendimiento gaming sin pagar el precio de un buque insignia, este equipo merece estar en tu lista corta.</p>
+
+    </div>
+
+    <!-- REACCIONES -->
+    <div class="reactions-box">
+      <h4>¿Qué te pareció este artículo?</h4>
+      <div class="reactions-row" id="reactionsRow">
+        <button class="reaction-btn" data-reaction="fuego"><span class="emoji">🔥</span> Me encanta <span class="count" data-count="fuego">0</span></button>
+        <button class="reaction-btn" data-reaction="util"><span class="emoji">👍</span> Útil <span class="count" data-count="util">0</span></button>
+        <button class="reaction-btn" data-reaction="duda"><span class="emoji">🤔</span> Tengo dudas <span class="count" data-count="duda">0</span></button>
+        <button class="reaction-btn" data-reaction="meh"><span class="emoji">😴</span> Meh <span class="count" data-count="meh">0</span></button>
+      </div>
+    </div>
+
+    <!-- COMPARTIR -->
+    <div class="post-footer-actions">
+      <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
+      <div class="share-buttons">
+        <span class="label">Compartir:</span>
+        <a href="#" id="share-fb" title="Compartir en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" id="share-x" title="Compartir en X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" id="share-wa" title="Compartir en WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <button id="share-copy" title="Copiar enlace"><i class="fa-solid fa-link"></i></button>
+        <button id="share-native" title="Compartir…"><i class="fa-solid fa-share-nodes"></i></button>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="side-card">
+      <h4><i class="fa-solid fa-microchip"></i> Ficha técnica</h4>
+      <div class="spec-list">
+        <div class="spec-row"><span>Pantalla</span><b>AMOLED 6.78" 120Hz</b></div>
+        <div class="spec-row"><span>Chip</span><b>Dimensity Octa-Core</b></div>
+        <div class="spec-row"><span>Batería</span><b>5000 mAh</b></div>
+        <div class="spec-row"><span>Carga</span><b>100W FastCharge</b></div>
+        <div class="spec-row"><span>Cámara</span><b>108 MP</b></div>
+        <div class="spec-row"><span>Sistema</span><b>XOS 14</b></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h4><i class="fa-solid fa-list-ul"></i> En este artículo</h4>
+      <ul class="toc-list" id="tocList"><!-- se genera desde los h2 del artículo --></ul>
+    </div>
+
+    <div class="ad-slot-side">
+      <span class="ad-slot-tag">Publicidad</span>
+      <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=500&auto=format&fit=crop" alt="Oferta en accesorios gaming">
+      <div class="ad-slot-copy">
+        <p>Power banks de 20000mAh con descuento especial esta semana.</p>
+        <a class="btn-ghost" href="index.html#gadgets" style="display:block; text-align:center;">Ver oferta</a>
+      </div>
+    </div>
+
+    <div class="side-card newsletter-card">
+      <h4><i class="fa-solid fa-envelope"></i> No te pierdas nada</h4>
+      <p>Recibe lanzamientos, trucos de XOS y ofertas antes que nadie.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="tu@correo.com" required>
+        <button type="submit" class="btn-primary">Suscribirme</button>
+      </form>
+      <p class="newsletter-note" id="newsletterNote">Sin spam. Cancela cuando quieras.</p>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ANUNCIO GRANDE -->
+<div class="ad-banner" style="max-width:1200px; margin-left:auto; margin-right:auto;">
+  <div class="ad-copy">
+    <span class="ad-tag">Oferta del mes</span>
+    <h3>Hasta 30% off en <span>gama gaming</span></h3>
+    <p>Los modelos con chip dedicado a gráficos y refrigeración por vapor están con el mejor precio del año.</p>
+    <a class="btn-primary" href="index.html#gadgets"><i class="fa-solid fa-tags"></i> Ver promociones</a>
+  </div>
+  <div class="ad-img">
+    <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=900&auto=format&fit=crop" alt="Oferta en smartphones gaming">
+  </div>
+</div>
+
+<!-- RECOMENDADOS: se llenan solos leyendo posts.json -->
+<section class="related-section">
+  <div class="section-head-sm">
+    <div>
+      <h3>Sigue <span>leyendo</span></h3>
+      <p>Elegidos automáticamente desde posts.json, priorizando la misma categoría.</p>
+    </div>
+  </div>
+  <div class="related-grid" id="relatedGrid">
+    <!-- se llena por JS -->
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2026 Tech Infinix Theme. Sitio no oficial de fans — hospedado en GitHub Pages.</p>
+</footer>
+
+<button id="back-to-top" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="copy-toast" id="copyToast">Enlace copiado ✓</div>
+
+<!-- BARRA FLOTANTE DE COMPARTIR (MÓVIL) -->
+<div class="mobile-share-bar">
+  <button id="mshare-native"><i class="fa-solid fa-share-nodes"></i><span>Compartir</span></button>
+  <button id="mshare-wa"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></button>
+  <button id="mshare-copy"><i class="fa-solid fa-link"></i><span>Copiar</span></button>
+  <button id="mshare-top"><i class="fa-solid fa-arrow-up"></i><span>Arriba</span></button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ============ CONFIG DE ESTE ARTÍCULO ============
+     Cambia este ID en cada archivo articulo-N.html para que
+     coincida con el "id" correspondiente dentro de posts.json.
+     Se usa para no recomendarte el artículo que ya estás leyendo. */
+  const currentPostId = "1";
+
+  /* ---------- MENÚ MÓVIL ---------- */
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobilePanel = document.getElementById('mobilePanel');
+  const panelBackdrop = document.getElementById('panelBackdrop');
+  function togglePanel(open){
+    mobilePanel.classList.toggle('open', open);
+    panelBackdrop.classList.toggle('open', open);
+    burgerBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  }
+  burgerBtn.addEventListener('click', () => togglePanel(!mobilePanel.classList.contains('open')));
+  panelBackdrop.addEventListener('click', () => togglePanel(false));
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => togglePanel(false)));
+
+  /* ---------- TICKER ---------- */
+  const anuncios = [
+    { icon:'fa-rocket', texto:'Nuevo Infinix NOTE 40 Pro+ 5G ya disponible' },
+    { icon:'fa-gift', texto:'Sorteo especial: gana audífonos TWS Pro' },
+    { icon:'fa-tags', texto:'Hasta 30% de descuento en gama gaming' },
+    { icon:'fa-microchip', texto:'XOS 14 ya disponible para más modelos' }
+  ];
+  const track = document.getElementById('tickerTrack');
+  const renderTicker = () => anuncios.map(a => `<span><i class="fa-solid ${a.icon}"></i>${a.texto}</span>`).join('');
+  track.innerHTML = renderTicker() + renderTicker();
+
+  /* ---------- BARRA DE PROGRESO DE LECTURA ---------- */
+  const progressBar = document.getElementById('reading-progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    progressBar.style.width = height > 0 ? `${(scrolled / height) * 100}%` : '0%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  /* ---------- TIEMPO DE LECTURA (calculado del propio texto) ---------- */
+  const bodyText = document.getElementById('post-body').innerText || '';
+  const words = bodyText.trim().split(/\s+/).filter(Boolean).length;
+  const minutos = Math.max(1, Math.round(words / 200));
+  document.getElementById('reading-time').innerHTML = `<i class="fa-regular fa-clock"></i> ${minutos} min de lectura`;
+
+  /* ---------- CONTADOR DE VISTAS (local, solo para este navegador) ---------- */
+  const viewKey = `vistas_${currentPostId}`;
+  const vistas = parseInt(localStorage.getItem(viewKey) || '0', 10) + 1;
+  localStorage.setItem(viewKey, vistas);
+  document.getElementById('view-count').textContent = vistas.toLocaleString('es');
+
+  /* ---------- TABLA DE CONTENIDOS AUTOGENERADA ---------- */
+  const tocList = document.getElementById('tocList');
+  const headings = Array.from(document.querySelectorAll('#post-body h2'));
+  tocList.innerHTML = headings.map(h => `<li><a href="#${h.id}" data-target="${h.id}">${h.textContent}</a></li>`).join('');
+  const tocLinks = Array.from(tocList.querySelectorAll('a'));
+  const headingObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = tocList.querySelector(`a[data-target="${entry.target.id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting){
+        tocLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  headings.forEach(h => headingObserver.observe(h));
+
+  /* ---------- REACCIONES (persisten por artículo en este navegador) ---------- */
+  const reactionKeyPrefix = `reaccion_${currentPostId}_`;
+  const reactionButtons = document.querySelectorAll('.reaction-btn');
+  reactionButtons.forEach(btn => {
+    const tipo = btn.dataset.reaction;
+    const countEl = btn.querySelector(`[data-count="${tipo}"]`);
+    let base = parseInt(localStorage.getItem(reactionKeyPrefix + tipo) || '0', 10);
+    countEl.textContent = base;
+
+    btn.addEventListener('click', () => {
+      const yaActivo = btn.classList.contains('active');
+      base = yaActivo ? Math.max(0, base - 1) : base + 1;
+      btn.classList.toggle('active', !yaActivo);
+      countEl.textContent = base;
+      localStorage.setItem(reactionKeyPrefix + tipo, base);
+    });
+  });
+
+  /* ---------- COMPARTIR ---------- */
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title);
+  document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+  document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+  document.getElementById('share-wa').href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+  [document.getElementById('share-fb'), document.getElementById('share-x'), document.getElementById('share-wa')]
+    .forEach(a => a.setAttribute('target', '_blank'));
+
+  const toast = document.getElementById('copyToast');
+  function copiarEnlace(){
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    }).catch(() => {
+      toast.textContent = 'No se pudo copiar';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    });
+  }
+  document.getElementById('share-copy').addEventListener('click', copiarEnlace);
+  document.getElementById('mshare-copy').addEventListener('click', copiarEnlace);
+
+  function compartirNativo(){
+    if (navigator.share){
+      navigator.share({ title: document.title, url: window.location.href }).catch(() => {});
+    } else {
+      copiarEnlace();
+    }
+  }
+  document.getElementById('share-native').addEventListener('click', compartirNativo);
+  document.getElementById('mshare-native').addEventListener('click', compartirNativo);
+  document.getElementById('mshare-wa').addEventListener('click', () => window.open(document.getElementById('share-wa').href, '_blank'));
+
+  /* ---------- BOTÓN VOLVER ARRIBA ---------- */
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 500), { passive:true });
+  const goTop = () => window.scrollTo({ top:0, behavior:'smooth' });
+  backToTop.addEventListener('click', goTop);
+  document.getElementById('mshare-top').addEventListener('click', goTop);
+
+  /* ---------- NEWSLETTER (demo sin backend) ---------- */
+  document.getElementById('newsletterForm').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('newsletterNote').textContent = '¡Listo! Revisa tu correo para confirmar.';
+  });
+
+  /* ---------- RECOMENDADOS DESDE posts.json ---------- */
+  const relatedGrid = document.getElementById('relatedGrid');
+  const relatedObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){ entry.target.classList.add('visible'); relatedObserver.unobserve(entry.target); }
+    });
+  }, { threshold:0.12 });
+
+  fetch('posts.json')
+    .then(res => { if(!res.ok) throw new Error('No se pudo leer posts.json'); return res.json(); })
+    .then(data => {
+      const miEtiqueta = document.querySelector('.post-label-badge')?.textContent.trim().toLowerCase();
+      const otros = data.filter(p => String(p.id) !== String(currentPostId));
+
+      // prioriza misma etiqueta, luego completa con el resto
+      const mismaCategoria = otros.filter(p => (p.etiqueta || '').toLowerCase() === miEtiqueta);
+      const resto = otros.filter(p => !mismaCategoria.includes(p));
+      const seleccion = [...mismaCategoria, ...resto].slice(0, 3);
+
+      if (seleccion.length === 0){
+        relatedGrid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1;">Aún no hay más artículos publicados.</p>`;
+        return;
+      }
+
+      relatedGrid.innerHTML = seleccion.map(post => `
+        <article class="related-card">
+          <div class="related-media">
+            <span class="related-badge">${post.etiqueta || ''}</span>
+            <a href="${post.url}"><img loading="lazy" src="${post.imagen}" alt="${post.titulo}"></a>
+          </div>
+          <div class="related-content">
+            <h4><a href="${post.url}">${post.titulo}</a></h4>
+            <p>${post.resumen}</p>
+            <a class="read-more-link" href="${post.url}">Leer artículo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+      `).join('');
+
+      relatedGrid.querySelectorAll('.related-card').forEach(card => relatedObserver.observe(card));
+    })
+    .catch(err => {
+      console.error('Error al cargar recomendados:', err);
+      relatedGrid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1;">No se pudieron cargar las recomendaciones.</p>`;
+    });
+});
+</script>
 
 </body>
 </html>
