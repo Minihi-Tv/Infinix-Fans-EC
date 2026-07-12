@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Infinix - El Futuro es Ahora</title>
+
+  <!-- Fuentes de Google y FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    /* === VARIABLES === */
+    :root {
+        --infinix-green: #00d95f;
+        --infinix-green-glow: rgba(0, 217, 95, 0.4);
+        --bg-black: #050505;
+        --bg-dark-1: #111111;
+        --bg-dark-2: #1a1a1a;
+        --text-main: #ffffff;
+        --text-muted: #a0a0a0;
+        --transition-fast: 0.3s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: var(--bg-black); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+    a { text-decoration: none; color: var(--infinix-green); transition: var(--transition-fast); }
+
+    /* === HEADER GLASSMORPHISM === */
+    #header-nav {
+        position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex;
+        justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.8);
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 1000;
+    }
+    .logo-brand { font-size: 26px; font-weight: 900; color: var(--text-main); text-transform: uppercase; }
+    .logo-brand span { color: var(--infinix-green); }
+    #header-nav ul { display: flex; gap: 30px; list-style: none; }
+    #header-nav ul li a { color: var(--text-main); font-weight: 600; font-size: 14px; text-transform: uppercase; }
+    #header-nav ul li a:hover { color: var(--infinix-green); }
+
+    /* === HERO BANNER === */
+    .hero-banner {
+        height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        text-align: center; padding: 0 20px; margin-top: 60px;
+        background: radial-gradient(circle at center, rgba(0,217,95,0.15) 0%, rgba(5,5,5,1) 60%), 
+                    url('https://images.unsplash.com/photo-1610945265064-3234dac85b0f?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-banner h1 { font-size: 4rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1;}
+    .hero-banner h1 span { color: var(--infinix-green); }
+    .hero-banner p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin-bottom: 30px; }
+    .btn-primary {
+        padding: 15px 35px; background-color: var(--infinix-green); color: var(--bg-black);
+        font-weight: 800; border-radius: 50px; text-transform: uppercase;
+    }
+    .btn-primary:hover { background-color: #00ff73; box-shadow: 0 5px 20px var(--infinix-green-glow); }
+
+    /* === CONTENEDOR PRINCIPAL === */
+    .main-container { padding: 60px 5%; max-width: 1400px; margin: auto; }
+    .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 40px; text-align: center; text-transform: uppercase; }
+    .section-title span { color: var(--infinix-green); border-bottom: 3px solid var(--infinix-green); }
+
+    /* === GRID DE ENTRADAS (TARJETAS) === */
+    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+    .post-card {
+        background: var(--bg-dark-1); border-radius: 15px; overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.05); position: relative; display: flex; flex-direction: column;
+        animation: fadeIn 0.5s ease forwards;
+    }
+    .post-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-color: var(--infinix-green-glow); }
+    .post-card-img { width: 100%; height: 220px; object-fit: cover; }
+    .post-card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+    .post-badge {
+        position: absolute; top: 15px; left: 15px; background: var(--infinix-green); color: var(--bg-black);
+        padding: 5px 12px; font-size: 0.75rem; font-weight: 800; border-radius: 20px; text-transform: uppercase;
+    }
+    .post-card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .post-card-title a { color: var(--text-main); }
+    .post-card-title a:hover { color: var(--infinix-green); }
+    .post-snippet { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; flex-grow: 1; }
+    .read-more-link { font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
+    .read-more-link:hover { gap: 10px; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 40px; background: #000; border-top: 1px solid #222; margin-top: 50px;}
+
+    @media (max-width: 768px) {
+        #header-nav ul { display: none; }
+        .hero-banner h1 { font-size: 2.5rem; }
+        .section-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header-nav">
+    <a href="index.html" class="logo-brand">TECH<span>INFINIX</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#main-content">Nuevos</a></li>
+        <li><a href="#main-content">Noticias</a></li>
+        <li><a href="#main-content">Promociones</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero-banner">
+    <h1>El Futuro es <span>AHORA</span></h1>
+    <p>Descubre los últimos lanzamientos de Infinix, noticias tecnológicas, trucos del sistema XOS y las mejores promociones en smartphones gaming.</p>
+    <a class="btn-primary" href="#main-content">Ver Contenido</a>
+  </section>
+
+  <!-- CONTENEDOR DE ARTÍCULOS -->
+  <div class="main-container" id="main-content">
+    <h2 class="section-title">Últimas <span>Publicaciones</span></h2>
+    
+    <!-- Aquí es donde el script inyectará las tarjetas de github automáticamente -->
+    <div class="posts-grid" id="caja-de-articulos">
+        <!-- Aparecerá un mensaje cargando antes de leer el JSON -->
+        <p style="text-align: center; color: var(--infinix-green); grid-column: 1 / -1;">Cargando artículos...</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&#169; 2024 Tech Infinix Theme. Hospedado en GitHub Pages.</p>
+  </footer>
+
+  <!-- SCRIPT MÁGICO: Lee la base de datos de GitHub (JSON) y crea el HTML -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // Función para cargar los datos del JSON
+        fetch('posts.json')
+            .then(response => response.json()) // Convierte la respuesta a objeto de Javascript
+            .then(data => {
+                const contenedor = document.getElementById('caja-de-articulos');
+                contenedor.innerHTML = ''; // Limpia el mensaje de "Cargando..."
+
+                // Por cada artículo en el JSON, crea una tarjeta HTML
+                data.forEach(post => {
+                    const tarjetaHTML = `
+                        <article class="post-card">
+                            <span class="post-badge">${post.etiqueta}</span>
+                            <a href="${post.url}">
+                                <img class="post-card-img" src="${post.imagen}" alt="${post.titulo}"/>
+                            </a>
+                            <div class="post-card-content">
+                                <h3 class="post-card-title">
+                                    <a href="${post.url}">${post.titulo}</a>
+                                </h3>
+                                <p class="post-snippet">${post.resumen}</p>
+                                <a class="read-more-link" href="${post.url}">Leer artículo <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    `;
+                    // Agrega la tarjeta al contenedor
+                    contenedor.innerHTML += tarjetaHTML;
+                });
+            })
+            .catch(error => {
+                console.error("Error al cargar los posts:", error);
+                document.getElementById('caja-de-articulos').innerHTML = '<p style="color:red; text-align:center;">Error al cargar la base de datos.</p>';
+            });
+    });
+  </script>
+
+</body>
+</html>
