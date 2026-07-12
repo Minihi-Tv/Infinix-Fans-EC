@@ -1,62 +1,34 @@
 [
   {
-    "titulo": "Infinix presenta su nuevo chip gaming octa-core",
-    "resumen": "La marca anuncia una nueva generación de procesadores enfocados en rendimiento gráfico y eficiencia energética.",
-    "etiqueta": "Lanzamiento",
-    "categoria": "lanzamiento",
-    "url": "#",
-    "imagen": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=800&auto=format&fit=crop",
-    "fecha": "10 jul 2026",
-    "tiempoLectura": "4 min"
+    "id": "1",
+    "titulo": "El Nuevo Infinix NOTE 40 Pro+ 5G",
+    "resumen": "Descubre la nueva bestia del gaming con carga relámpago de 100W y pantalla curva AMOLED a 120Hz.",
+    "imagen": "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=800&auto=format&fit=crop",
+    "etiqueta": "Nuevos",
+    "url": "articulo-1.html"
   },
   {
-    "titulo": "XOS 15: todo lo nuevo en personalización y batería",
-    "resumen": "La última versión del sistema operativo llega con widgets rediseñados y un modo de ahorro de batería más agresivo.",
-    "etiqueta": "Trucos",
-    "categoria": "trucos",
-    "url": "#",
-    "imagen": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop",
-    "fecha": "8 jul 2026",
-    "tiempoLectura": "6 min"
+    "id": "2",
+    "titulo": "XOS 14: Todos los trucos ocultos",
+    "resumen": "Aprende a sacarle el máximo provecho al nuevo sistema operativo de Infinix. Mejoras en IA, rendimiento y más.",
+    "imagen": "https://images.unsplash.com/photo-1610945265064-3234dac85b0f?q=80&w=800&auto=format&fit=crop",
+    "etiqueta": "Noticias",
+    "url": "articulo-2.html"
   },
   {
-    "titulo": "Promoción especial: hasta 30% off en gama gaming",
-    "resumen": "Tiendas asociadas ofrecen descuentos limitados en los modelos con refrigeración por vapor y pantalla 120Hz.",
-    "etiqueta": "Promoción",
-    "categoria": "promocion",
-    "url": "#",
-    "imagen": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop",
-    "fecha": "5 jul 2026",
-    "tiempoLectura": "3 min"
-  },
-  {
+    "id": "3",
     "titulo": "Comparativa: los mejores audífonos TWS para gaming móvil",
     "resumen": "Analizamos latencia, autonomía y calidad de sonido de los modelos más populares del momento.",
-    "etiqueta": "Gadget",
-    "categoria": "gadget",
-    "url": "#",
     "imagen": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop",
-    "fecha": "3 jul 2026",
-    "tiempoLectura": "5 min"
+    "etiqueta": "Gadgets",
+    "url": "articulo-3.html"
   },
   {
-    "titulo": "Reseña a fondo: una semana usando la cámara de 108MP",
-    "resumen": "Ponemos a prueba el sensor principal en distintas condiciones de luz y comparamos con la generación anterior.",
-    "etiqueta": "Reseña",
-    "categoria": "reseña",
-    "url": "#",
-    "imagen": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop",
-    "fecha": "1 jul 2026",
-    "tiempoLectura": "7 min"
-  },
-  {
-    "titulo": "Rumores: así sería el próximo buque insignia de la serie Zero",
-    "resumen": "Filtraciones apuntan a una pantalla curva, carga a 120W y un diseño inspirado en la fotografía profesional.",
-    "etiqueta": "Noticia",
-    "categoria": "noticia",
-    "url": "#",
-    "imagen": "https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=800&auto=format&fit=crop",
-    "fecha": "28 jun 2026",
-    "tiempoLectura": "4 min"
+    "id": "4",
+    "titulo": "Hasta 30% off en gama gaming este mes",
+    "resumen": "Tiendas asociadas ofrecen descuentos limitados en los modelos con pantalla 120Hz y carga rápida.",
+    "imagen": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop",
+    "etiqueta": "Promociones",
+    "url": "articulo-4.html"
   }
 ]
