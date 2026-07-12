@@ -1,8 +1,18 @@
-{
+[
+  {
     "id": "1",
     "titulo": "El Nuevo Infinix NOTE 40 Pro+ 5G",
-    "resumen": "Descubre la nueva bestia del gaming con carga relámpago de 100W.",
-    "imagen": "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=800",
+    "resumen": "Descubre la nueva bestia del gaming con carga relámpago de 100W y pantalla curva AMOLED a 120Hz.",
+    "imagen": "https://images.unsplash.com/photo-1598327105666-5b89351cb315?q=80&w=800&auto=format&fit=crop",
     "etiqueta": "Nuevos",
-    "url": "articulo-1.html" 
-}
+    "url": "articulo-1.html"
+  },
+  {
+    "id": "2",
+    "titulo": "XOS 14: Todos los trucos ocultos",
+    "resumen": "Aprende a sacarle el máximo provecho al nuevo sistema operativo de Infinix. Mejoras en IA, rendimiento y más.",
+    "imagen": "https://images.unsplash.com/photo-1610945265064-3234dac85b0f?q=80&w=800&auto=format&fit=crop",
+    "etiqueta": "Noticias",
+    "url": "articulo-2.html"
+  }
+]
