@@ -39,8 +39,9 @@
   --ease:cubic-bezier(.22,.9,.32,1);
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg-black);color:var(--text-main);overflow-x:hidden;line-height:1.6;}
+html{scroll-behavior:smooth; overflow-x:hidden; width:100%;}
+body{background:var(--bg-black);color:var(--text-main);overflow-x:hidden;line-height:1.6; width:100%;}
+img,svg,video{max-width:100%; height:auto;}
 a{text-decoration:none;color:var(--green);}
 img{display:block;max-width:100%;}
 .mono{font-family:'JetBrains Mono',monospace;}
@@ -177,7 +178,7 @@ body::before{
   border:2px solid rgba(255,255,255,.1); box-shadow:0 30px 80px rgba(0,0,0,.7);
   animation:floatDevice 5s ease-in-out infinite;
 }
-.device-frame img{width:100%; height:560px; object-fit:cover;}
+.device-frame img{width:100%; height:560px !important; object-fit:cover;}
 @keyframes floatDevice{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
 
 .spec-chip{
@@ -197,11 +198,20 @@ body::before{
 .chip-4{bottom:2%; right:-2%;} .chip-4::after{left:-36px; top:50%;}
 @keyframes chipIn{from{opacity:0; transform:translateY(10px);}to{opacity:1; transform:translateY(0);}}
 
-@media (max-width:640px){
-  .spec-chip{position:static; margin:6px; display:inline-flex; flex-direction:row; gap:8px; align-items:baseline;}
+/* En cuanto el hero pasa a una sola columna (tablet e inferior), los chips
+   flotantes dejan de tener espacio lateral seguro: se convierten en badges
+   apilados debajo del teléfono para que nada quede cortado por el viewport. */
+@media (max-width:1024px){
+  .hero-device{flex-wrap:wrap; gap:10px; padding:0 4px;}
+  .spec-chip{position:static; margin:4px; display:inline-flex; flex-direction:row; gap:8px; align-items:baseline;}
   .spec-chip::after{display:none;}
-  .device-frame{width:190px;}
-  .device-frame img{height:420px;}
+  .device-frame{width:220px;}
+  .device-frame img{height:480px !important;}
+}
+@media (max-width:480px){
+  .device-frame{width:180px;}
+  .device-frame img{height:390px !important;}
+  .spec-chip{font-size:10.5px; padding:7px 10px;}
 }
 
 /* ============ MAIN CONTAINER ============ */
