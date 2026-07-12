@@ -416,15 +416,10 @@ footer{position:relative; z-index:2; background:var(--bg-1); border-top:1px soli
     </div>
   </div>
 
-  <!-- FILTROS -->
+  <!-- FILTROS: el botón "Todos" es fijo, el resto se genera solo desde las
+       etiquetas que existan en posts.json (no hay que tocar este HTML nunca) -->
   <div class="filters-bar" id="filtersBar">
     <button class="filter-chip active" data-filter="todos">Todos</button>
-    <button class="filter-chip" data-filter="lanzamiento">Lanzamientos</button>
-    <button class="filter-chip" data-filter="noticia">Noticias</button>
-    <button class="filter-chip" data-filter="trucos">Trucos XOS</button>
-    <button class="filter-chip" data-filter="promocion">Promociones</button>
-    <button class="filter-chip" data-filter="gadget">Gadgets</button>
-    <button class="filter-chip" data-filter="reseña">Reseñas</button>
     <span class="filters-count" id="filtersCount"></span>
   </div>
 
@@ -573,6 +568,46 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   renderSkeletons();
 
+  /* ---------- NORMALIZAR TEXTO (para comparar sin tildes/mayúsculas) ---------- */
+  function normalizar(texto){
+    return (texto || '')
+      .toString()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // quita tildes
+      .toLowerCase()
+      .trim();
+  }
+
+  /* ---------- GENERA LOS FILTROS A PARTIR DE LAS ETIQUETAS DEL JSON ---------- */
+  function construirFiltros(posts){
+    const vistas = new Map(); // clave normalizada -> texto original (para el botón)
+    posts.forEach(post => {
+      const original = (post.etiqueta || '').trim();
+      if (!original) return;
+      const clave = normalizar(original);
+      if (!vistas.has(clave)) vistas.set(clave, original);
+    });
+
+    // quita botones dinámicos previos (deja "Todos" y el contador)
+    filtersBar.querySelectorAll('.filter-chip[data-dynamic]').forEach(btn => btn.remove());
+
+    vistas.forEach((etiquetaOriginal, clave) => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-chip';
+      btn.dataset.filter = clave;
+      btn.dataset.dynamic = 'true';
+      btn.textContent = etiquetaOriginal;
+      btn.addEventListener('click', () => activarFiltro(btn));
+      filtersCount.insertAdjacentElement('beforebegin', btn);
+    });
+  }
+
+  function activarFiltro(chip){
+    filtersBar.querySelector('.filter-chip.active')?.classList.remove('active');
+    chip.classList.add('active');
+    currentFilter = chip.dataset.filter;
+    renderPosts();
+  }
+
   /* ---------- LAZY LOAD (IntersectionObserver) ---------- */
   const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -587,7 +622,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderPosts(){
     const term = currentSearch.trim().toLowerCase();
     const filtrados = allPosts.filter(post => {
-      const coincideFiltro = currentFilter === 'todos' || (post.categoria || '').toLowerCase() === currentFilter;
+      const coincideFiltro = currentFilter === 'todos' || normalizar(post.etiqueta) === currentFilter;
       const coincideBusqueda = !term ||
         (post.titulo || '').toLowerCase().includes(term) ||
         (post.resumen || '').toLowerCase().includes(term);
@@ -614,10 +649,11 @@ document.addEventListener("DOMContentLoaded", function () {
           </a>
         </div>
         <div class="post-card-content">
+          ${(post.fecha || post.tiempoLectura) ? `
           <div class="post-meta">
             ${post.fecha ? `<span><i class="fa-regular fa-calendar"></i> ${post.fecha}</span>` : ''}
             ${post.tiempoLectura ? `<span><i class="fa-regular fa-clock"></i> ${post.tiempoLectura}</span>` : ''}
-          </div>
+          </div>` : ''}
           <h3 class="post-card-title"><a href="${post.url}">${post.titulo}</a></h3>
           <p class="post-snippet">${post.resumen}</p>
           <a class="read-more-link" href="${post.url}">Leer artículo <i class="fa-solid fa-arrow-right"></i></a>
@@ -630,12 +666,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------- FILTROS ---------- */
   filtersBar.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      filtersBar.querySelector('.filter-chip.active')?.classList.remove('active');
-      chip.classList.add('active');
-      currentFilter = chip.dataset.filter;
-      renderPosts();
-    });
+    chip.addEventListener('click', () => activarFiltro(chip));
   });
 
   /* ---------- BÚSQUEDA (desktop + mobile sincronizados) ---------- */
@@ -656,6 +687,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then(data => {
       allPosts = data;
+      construirFiltros(allPosts);
       renderPosts();
     })
     .catch(err => {
